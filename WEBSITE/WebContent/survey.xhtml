@@ -1,0 +1,210 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "httpt://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+	<h:outputStylesheet library="css" name="site.css" />
+	<h:outputStylesheet library="css" name="survey.css" />
+</h:head>
+<h:body>
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/Templates/header.xhtml" />
+		</ui:insert>
+	</div>
+	<div id="content">
+		<div class="container">
+			<h2>Please fill the survey</h2>
+			<h:form class="form-horizontal">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="fName">First
+						Name:</label>
+					<div class="col-sm-10">
+						<p:inputText styleClass="form-control"
+							requiredMessage="First Name is required"
+							validatorMessage="Please enter alphabets only" id="fName"
+							value="#{survey.student.firstName}"
+							pt:placeholder="Enter first name" required="true" maxlength="16">
+
+							<f:validateRegex pattern="[a-zA-Z]*" />
+						</p:inputText>
+						<p:message for="fName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="lName">Last
+						Name:</label>
+					<div class="col-sm-10">
+						<p:inputText styleClass="form-control" id="lName"
+							requiredMessage="Last Name is required"
+							validatorMessage="Please enter alphabets only(Max 15 characters)"
+							pt:placeholder="Enter last name"
+							value="#{survey.student.lastName}" required="true">
+							<f:validateLength maximum="15"></f:validateLength>
+							<f:validateRegex pattern="[a-zA-Z]*" />
+						</p:inputText>
+						<p:message for="lName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="streetAddress">Street
+						Address:</label>
+					<div class="col-sm-10">
+						<p:inputText type="text" styleClass="form-control"
+							id="streetAddress" pt:placeholder="Enter street address"
+							requiredMessage="Street Address is required"
+							value="#{survey.student.streetAddress}" required="true"
+							validatorMessage="Address cannot be more than 30 characters long">
+							<f:validateLength maximum="30"></f:validateLength>
+						</p:inputText>
+						<p:message for="streetAddress" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="city">City:</label>
+					<div class="col-sm-10">
+						<p:inputText type="text" styleClass="form-control" id="city"
+							pt:placeholder="Enter city" value="#{survey.student.city}"
+							requiredMessage="City is required" required="true" />
+						<p:message for="city" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2 " style="margin-right: 1%;"
+						for="state-selector">Select State:</label>
+					<p:selectOneMenu value="#{survey.student.state}" required="true">
+					 <f:selectItem  itemLabel="Select State" itemValue=""  />
+						<f:selectItems  id="state"  value="#{survey.states}" />
+					</p:selectOneMenu>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="zip">Zip:</label>
+					<div class="col-sm-10">
+						<p:inputText type="text" styleClass="form-control" id="zip"
+							required="true" requiredMessage="Zip code is required"
+							validatorMessage="Must be a valid zip code"
+							pt:placeholder="Enter zip code" value="#{survey.student.zip}">
+							<f:validateRegex pattern="^[0-9]{5}(?:-[0-9]{4})?$" />
+							<f:ajax render="state city" event="blur"
+								listener="#{survey.getCityAndStateFromZip}" execute="@this" />
+						</p:inputText>
+						<p:message for="zip" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="tel">Telephone
+						Number:</label>
+					<div class="col-sm-10">
+						<p:inputMask mask="(999)999-9999" required="true"
+							requiredMessage="Phone is required" type="text"
+							styleClass="form-control" id="tel"
+							pt:placeholder="Enter telephone number"
+							value="#{survey.student.phone}" />
+						<p:message for="tel" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="email">Email:</label>
+					<div class="col-sm-10">
+						<p:inputText type="email" styleClass="form-control" id="email"
+							pt:placeholder="Enter email address"
+							value="#{survey.student.email}" required="true"
+							requiredMessage="Email is required"
+							validatorMessage="Please enter a valid email address">
+							<f:validateRegex pattern="^[A-Za-z0-9+_.-]+@(.+)$" />
+						</p:inputText>
+						<p:message for="email" />
+					</div>
+				</div>
+				<p:outputLabel for="dateOfSurvey" value="Date of Survey" />
+				<p:calendar id="dateOfSurvey" binding="#{surveyDateComponent}"
+					value="#{survey.student.dateOfSurvey}" pattern="MM/dd/yyyy"
+					required="true" requiredMessage="Date of Survey is required" />
+				<p:message for="dateOfSurvey" />
+				<p:outputLabel for="possibleStartDate" value="Possible start date" />
+				<p:calendar id="possibleStartDate"
+					value="#{survey.student.possibleStartDate}" pattern="MM/dd/yyyy"
+					required="true"
+					requiredMessage="Possible Semester start Date is required">
+					<f:validator validatorId="com.Utilities.DateRangeValidator" />
+					<f:attribute name="surveyDateComponent"
+						value="#{surveyDateComponent}" />
+				</p:calendar>
+				<p:message for="possibleStartDate" />
+
+				<div class="form-group checkbox-items">
+					<p>What did you like the most about the campus?</p>
+					<p:selectManyCheckbox value="#{survey.student.likedItems}">
+						<f:selectItem itemValue="Students" itemLabel="Students" />
+						<f:selectItem itemValue="Location" itemLabel="Location" />
+						<f:selectItem itemValue="Campus" itemLabel="Campus" />
+						<f:selectItem itemValue="Atmosphere" itemLabel="Atmosphere" />
+						<f:selectItem itemValue="Dorm Rooms" itemLabel="Dorm Rooms" />
+						<f:selectItem itemValue="Sports" itemLabel="Sports" />
+					</p:selectManyCheckbox>
+				</div>
+				<div class="form-group checkbox-items">
+					<p>How did hear about us?</p>
+					<p:selectOneRadio id="medium" value="#{survey.student.medium}">
+						<f:selectItem id="friends" itemLabel="Friends" itemValue="Friends" />
+						<f:selectItem id="tv" itemLabel="TV" itemValue="TV" />
+						<f:selectItem id="internet" itemLabel="Internet"
+							itemValue="Internet" />
+						<f:selectItem id="other" itemLabel="Other" itemValue="Other" />
+					</p:selectOneRadio>
+				</div>
+				<div class="form-group">
+					<label for="likeliHood">Select the likelihood of you
+						recommending this school to others:</label> <br />
+					<p:selectOneMenu id="likeliHood"
+						value="#{survey.student.recommendation}"
+						style="width:30%;padding-right:3px">
+						<f:selectItem itemLabel="Select One" />
+						<f:selectItem itemValue="Very Likely" itemLabel="Very Likely" />
+						<f:selectItem itemValue="Likely" itemLabel="Likely" />
+						<f:selectItem itemValue="Unlikely" itemLabel="Unlikely" />
+					</p:selectOneMenu>
+				</div>
+				<div class="form-group">
+					<label class="" for="zip">Raffle(Enter numbers between 1
+						and 100 to win free Movie)</label><br />
+					<div>
+						<p:inputText required="true" type="text"
+							value="#{survey.student.numbers}"
+							requiredMessage="Raffle values are required"
+							styleClass="form-control" style="width:100%" id="raffles"
+							pt:placeholder="Enter at least 10 comma separated numbers to enter">
+							<f:validator validatorId="com.Utilities.RaffleValidator" />
+						</p:inputText>
+						<p:message for="raffles" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label for="comment">Additional Comments:</label>
+					<p:inputTextarea styleClass="form-control"
+						value="#{survey.student.additionalComments}" rows="5" id="comment" />
+				</div>
+				<div class="form-group">
+					<div>
+						<h:commandButton styleClass="btn btn-primary" value="Submit"
+							update="form" action="#{survey.saveSurveyInfo}" />
+						<h:commandButton type="reset" styleClass="btn btn-default"
+							value="Cancel" />
+					</div>
+				</div>
+			</h:form>
+		</div>
+
+	</div>
+
+</h:body>
+</html>

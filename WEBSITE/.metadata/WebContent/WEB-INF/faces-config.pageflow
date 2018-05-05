@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pageflow:Pageflow xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14874362514660" configfile="/Homeworks/WebContent/WEB-INF/faces-config.xml">
+  <nodes xsi:type="pageflow:PFPage" name="survey.xhtml" x="122" y="370" id="pf14888467110818" referenceLink="//@navigationRule.0/@fromViewId|" outlinks="pf149266705170612 pf149266705170613 pf149266705170614" path="/survey.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="SimpleAcknowledgement.xhtml" id="pf149266705170615" referenceLink="//@navigationRule.0/@navigationCase.0/@toViewId|" inlinks="pf149266705170612" path="/SimpleAcknowledgement.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="WinnerAcknowledgement.xhtml" id="pf149266705170616" referenceLink="//@navigationRule.0/@navigationCase.1/@toViewId|" inlinks="pf149266705170613" path="/WinnerAcknowledgement.xhtml"/>
+  <nodes xsi:type="pageflow:PFPage" name="error.xhtml" id="pf149266705170617" referenceLink="//@navigationRule.0/@navigationCase.2/@toViewId|" inlinks="pf149266705170614" path="/error.xhtml"/>
+  <links id="pf149266705170612" target="pf149266705170615" source="pf14888467110818"/>
+  <links id="pf149266705170613" target="pf149266705170616" source="pf14888467110818"/>
+  <links id="pf149266705170614" target="pf149266705170617" source="pf14888467110818"/>
+</pageflow:Pageflow>

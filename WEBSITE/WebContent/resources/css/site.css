@@ -1,0 +1,84 @@
+/*
+In addition to the boostrap and other css files, I added this file to customize my css elements.
+*/
+/*Utility css*/
+.margin-all-one{
+	margin:1% important;
+}
+.margin-right-one{
+	margin-right:1% important;
+}
+.margin-left-one{
+	margin-left:1% important;
+}
+
+.margin-top-one{
+	margin-top:1% important;
+}
+.margin-bottom-one{
+	margin-bottom:1% important;
+}
+/**/
+.top-header{
+	background: rgb(0, 105, 64);
+}
+.login-icon{
+	font-size: 2em;
+    color: white;
+    padding: 17px;
+}
+.bottom-footer{
+	
+	background: rgb(0, 105, 64);
+    padding-top: 4%;
+    color:white;
+}
+.padding-four{
+	padding:4%;
+}
+.color-white{
+	color:white !important;
+}
+.color-red{
+	color:red !important;
+}
+.uppercase{
+	text-transform:uppercase !important;
+}
+
+/*Carousel related css*/
+.carousel-inner>.item>img{
+	height:650px !important;
+}
+.carousel-control.right,.carousel-control.left{
+	width:2% !important;
+}
+/*Header*/
+#header-home{
+	    font-size: 1.5em !important;
+    color: white !important;
+    top: 10px !important;
+}
+/*Jumbotran*/
+#featured-title{
+	font-size:2em !important;
+	display:block;
+}
+/*Overriding boostrap**/
+.form-control{
+	display: block;
+    width: 50% !important; 
+    height: 50px !important;
+    font-size: 16px !important;
+    border: 2px solid #ccc !important;
+    border-radius: 8px !important;
+}
+
+.checkbox-items td label{
+	    padding-right: 5px;
+    margin-left: 10px;
+}
+
+.right-nav span,.right-nav a{
+	color:white !important;
+}

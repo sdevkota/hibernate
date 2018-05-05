@@ -1,0 +1,26 @@
+/*this css file is for survey page*/
+
+.state-selector{
+	width:41% !important;
+}
+#label-state-selector{
+	
+}
+.additional-comment{
+	height: auto !important;
+}
+.ui-selectonemenu-label{
+	padding:10px !important;
+}
+.ui-selectonemenu-trigger{
+	width:10% !important;
+}
+.ui-message-error {
+	    margin: 1% 0%;
+    padding: 1%;
+    width: 50%;
+}
+#state-selection .ui-message-error{
+	width: 40%;
+    margin-left: 18%;
+}

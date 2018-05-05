@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "httpt://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<title>Advanced Search Surveys</title>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+	<h:outputStylesheet library="css" name="site.css" />
+	<h:outputStylesheet library="css" name="student.css" />
+</h:head>
+<h:body>
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/Templates/header.xhtml" />
+		</ui:insert>
+	</div>
+	<div id="content">
+		<div class="container">
+
+			<h1>Advanced Search</h1>
+			<p>Please search using this advanced search option</p>
+			<h:form class="form-horizontal">
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="fName">First
+						Name:</label>
+					<div class="col-sm-10">
+						<p:inputText styleClass="form-control"
+							validatorMessage="Please enter alphabets only" id="fName"
+							value="#{survey.student.firstName}"
+							pt:placeholder="Search by first name" maxlength="16">
+							<f:validateRegex pattern="[a-zA-Z]*" />
+						</p:inputText>
+						<p:message for="fName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="lName">Last
+						Name:</label>
+					<div class="col-sm-10">
+						<p:inputText styleClass="form-control" id="lName"
+							validatorMessage="Please enter alphabets only(Max 15 characters)"
+							pt:placeholder="Search by last name"
+							value="#{survey.student.lastName}">
+							<f:validateLength maximum="15"></f:validateLength>
+							<f:validateRegex pattern="[a-zA-Z]*" />
+						</p:inputText>
+						<p:message for="lName" />
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="control-label col-sm-2" for="city">City:</label>
+					<div class="col-sm-10">
+						<p:inputText type="text" styleClass="form-control" id="city"
+							pt:placeholder="Search by city" value="#{survey.student.city}" />
+						<p:message for="city" />
+					</div>
+				</div>
+				<div id="state" class="form-group">
+				<label class="control-label col-sm-2 " style="margin-right: 1%;"
+						for="state-selector">State:</label>
+					<p:selectOneMenu value="#{survey.student.state}">
+					 <f:selectItem itemLabel="Select State" itemValue="" noSelectionOption="true" />
+						<f:selectItems value="#{survey.states}" />
+					</p:selectOneMenu>
+				</div>
+				<br />
+				<div class="form-group" style="float: right; margin-right: 40%;">
+					<div>
+						<h:commandButton styleClass="btn btn-success"
+							value="Search Surveys" ajax="false"
+							action="#{survey.displaySearchResults}" />
+						&nbsp;
+						<h:commandButton type="reset" styleClass="btn btn-default"
+							value="reset " />
+					</div>
+				</div>
+			</h:form>
+			
+		</div>
+
+	</div>
+</h:body>
+</html>

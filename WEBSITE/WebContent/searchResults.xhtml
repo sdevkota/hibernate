@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "httpt://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://xmlns.jcp.org/jsf/core"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+	xmlns:p="http://primefaces.org/ui">
+<h:head>
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+	<link rel="stylesheet"
+		href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" />
+	<h:outputStylesheet library="css" name="site.css" />
+	<h:outputStylesheet library="css" name="survey.css" />
+</h:head>
+<h:body>
+	<div id="header">
+		<ui:insert name="header">
+			<ui:include src="/Templates/header.xhtml" />
+		</ui:insert>
+	</div>
+	<div id="content">
+		<div style="margin-right: 1%; margin-left: 1%;">
+			<h:form id="surveyTableForm">
+				<h1>Search Results</h1>
+				<p:dataTable id="surveyTable" var="surveyItem"
+					value="#{survey.searchResults}" scrollable="true" resizableColumns="true"
+					scrollHeight="99%">
+					<p:column headerText="First Name">
+						<h:outputText value="#{surveyItem.firstName}" />
+					</p:column>
+
+					<p:column headerText="Last Name">
+						<h:outputText value="#{surveyItem.lastName}" />
+					</p:column>
+
+					<p:column headerText="Street Address">
+						<h:outputText value="#{surveyItem.streetAddress}" />
+					</p:column>
+
+					<p:column headerText="City">
+						<h:outputText value="#{surveyItem.city}" />
+					</p:column>
+					<p:column headerText="State">
+						<h:outputText value="#{surveyItem.state}" />
+					</p:column>
+					<p:column headerText="Zip code">
+						<h:outputText value="#{surveyItem.zip}" />
+					</p:column>
+					<p:column headerText="Phone#">
+						<h:outputText value="#{surveyItem.phone}" />
+					</p:column>
+					<p:column headerText="Email">
+						<h:outputText value="#{surveyItem.email}" />
+					</p:column>
+					<p:column headerText="Date">
+						<h:outputText value="#{surveyItem.dateOfSurvey}" />
+					</p:column>
+					<p:column headerText="Poosbile Sem Start Date">
+						<h:outputText value="#{surveyItem.possibleStartDate}" />
+					</p:column>
+					<p:column headerText="Likes">
+						<h:outputText value="#{surveyItem.likes}" />
+					</p:column>
+					<p:column headerText="How did survey hear">
+						<h:outputText value="#{surveyItem.medium}" />
+					</p:column>
+					<p:column headerText="Recommendation">
+						<h:outputText value="#{surveyItem.recommendation}" />
+					</p:column>
+					<p:column headerText="Raffle Entry">
+						<h:outputText value="#{surveyItem.numbers}" />
+					</p:column>
+					<p:column headerText="Additional Comments">
+						<h:outputText value="#{surveyItem.additionalComments}" />
+					</p:column>
+					<p:column>
+						<p:commandButton value="Delete"
+							actionListener="#{survey.deleteSurvey(surveyItem)}" onclick="return confirm('Are you sure you would like to delete this record?')" ajax="false" />
+					</p:column>
+				</p:dataTable>
+			</h:form>
+		</div>
+	</div>
+	<br />
+
+</h:body>
+</html>

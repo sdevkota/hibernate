@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://xmlns.jcp.org/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+   <h:head>
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" />
+			<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css"/>
+			 <h:outputStylesheet name="css/site.css"/>
+			  <h:outputStylesheet name="css/survey.css"/>
+			<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js"></script>
+			<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   </h:head>
+   <h:body>
+           <div id="header">
+		<ui:insert name="header" >
+		  <ui:include src="/Templates/header.xhtml" />
+		</ui:insert>
+	    </div>
+	    <div id="content">
+	    <br/>
+	     <br/>
+	      <br/>
+	  <h2 class="text-center">Your form has been successfully submitted.</h2>
+	  <br/>
+	  <div class="container text-center">
+	  <h1>CONGRATULATIONS !!! YOU'VE WON A FREE MOVIE TICKET</h1>
+	  <h2>Student Name: <h:outputText value="#{survey.student.fullName}" /></h2>
+	   <h2>Mean Value: <h:outputText value="#{survey.winningResult.mean}" /></h2>
+	    <h2>Standard Deviation: <h:outputText value="#{survey.winningResult.standardDeviation}" /></h2>
+	  <h:link value="Click to go to survey list" outcome="surveyList.jsf"/>
+	  </div>
+	    </div>
+
+   </h:body>
+</html>
